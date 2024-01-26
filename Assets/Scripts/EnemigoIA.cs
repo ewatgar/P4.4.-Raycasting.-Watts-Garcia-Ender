@@ -1,9 +1,9 @@
-
 using UnityEngine;
 
 public class EnemigoIA : MonoBehaviour
 {
-    enum EstadoEnemigo{
+    enum EstadoEnemigo
+    {
         Parado = 0,
         Andando = 1
     }
@@ -22,10 +22,38 @@ public class EnemigoIA : MonoBehaviour
 
     void Update()
     {
-        switch (estado){
+        Ray rayo = new Ray(
+            transform.position + new Vector3(0, 1, 0) + transform.forward,
+            transform.forward
+        );
+
+        RaycastHit hit;
+        bool colisionPared = Physics.SphereCast(
+            rayo,
+            0.4f,
+            out hit,
+            LayerMask.GetMask("Enemy"));
+
+            
+
+        if (!colisionPared){
+            Vector3 reflexionPared = Vector3.Reflect(transform.forward,hit.normal); 
+            
+            Debug.DrawLine(transform.forward, hit.point, Color.red);
+            Debug.DrawLine(hit.point, hit.normal, Color.blue);
+            Debug.DrawLine(hit.point, reflexionPared, Color.white);
+        }
+
+
+
+
+
+        // --------------------------------------------
+        switch (estado)
+        {
             case EstadoEnemigo.Andando:
                 Debug.Log("Se mueve");
-                characterController.Move(Vector3.forward*speed*Time.deltaTime);
+                characterController.Move(transform.forward * speed * Time.deltaTime);
                 IniciarAnimacion();
                 break;
             case EstadoEnemigo.Parado:
@@ -33,18 +61,23 @@ public class EnemigoIA : MonoBehaviour
                 PararAnimacion();
                 break;
         }
+
     }
 
-    private void IniciarAnimacion(){
+    private void IniciarAnimacion()
+    {
         estado = EstadoEnemigo.Andando;
-        foreach (RotadorExtremidades rotador in rotadores){
+        foreach (RotadorExtremidades rotador in rotadores)
+        {
             rotador.IniciarAnimacion();
         }
     }
 
-    private void PararAnimacion(){
+    private void PararAnimacion()
+    {
         estado = EstadoEnemigo.Parado;
-        foreach (RotadorExtremidades rotador in rotadores){
+        foreach (RotadorExtremidades rotador in rotadores)
+        {
             rotador.PararAnimacion();
         }
     }

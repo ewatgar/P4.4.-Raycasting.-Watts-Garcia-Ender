@@ -5815,7 +5815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7d8ec6a6e64f040b34ea365e3a3a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
 --- !u!143 &6258863133376253027
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5894,6 +5894,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5771997509293590817, guid: ec7909ce47fdcb941846b6f68930ec42, type: 3}
+      propertyPath: vAngular
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226901188648445962, guid: ec7909ce47fdcb941846b6f68930ec42, type: 3}
+      propertyPath: vAngular
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 7477439425326863669, guid: ec7909ce47fdcb941846b6f68930ec42, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.5
@@ -5958,7 +5966,9 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 690381025}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 231498301216251836, guid: ec7909ce47fdcb941846b6f68930ec42, type: 3}
+    - {fileID: 2737094783963805267, guid: ec7909ce47fdcb941846b6f68930ec42, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
