@@ -26,7 +26,7 @@ public class RotadorExtremidades : MonoBehaviour
         }
     }
 
-    private void IniciarAnimacion()
+    public void IniciarAnimacion()
     {
         if (isWalking){
             if (anguloTotal >= angMaximo || anguloTotal <= angMinimo){
@@ -43,7 +43,7 @@ public class RotadorExtremidades : MonoBehaviour
         transform.localEulerAngles = new Vector3(anguloTotal,0,0);
     }
 
-    private void PararAnimacion(){
+    public void PararAnimacion(){
         transform.localEulerAngles = Vector3.zero;
     }
 }
