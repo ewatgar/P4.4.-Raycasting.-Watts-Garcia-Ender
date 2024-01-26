@@ -30,23 +30,17 @@ public class EnemigoIA : MonoBehaviour
         RaycastHit hit;
         bool colisionPared = Physics.SphereCast(
             rayo,
-            0.4f,
+            0.2f,
             out hit,
             LayerMask.GetMask("Enemy"));
-
-            
 
         if (!colisionPared){
             Vector3 reflexionPared = Vector3.Reflect(transform.forward,hit.normal); 
             
-            Debug.DrawLine(transform.forward, hit.point, Color.red);
+            Debug.DrawLine(transform.position, hit.point, Color.red);
             Debug.DrawLine(hit.point, hit.normal, Color.blue);
             Debug.DrawLine(hit.point, reflexionPared, Color.white);
         }
-
-
-
-
 
         // --------------------------------------------
         switch (estado)
