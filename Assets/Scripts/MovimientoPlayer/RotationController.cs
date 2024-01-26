@@ -10,6 +10,8 @@ public class RotationController : MonoBehaviour
     [SerializeField] public float velocidadRotacion = 320;
     public EjesRotacion modoRotacion = EjesRotacion.MouseX;
 
+    private Boolean lockMouse = true;
+
     void Start()
     {
         Debug.Log("Posicion inicial: " + transform.position);
@@ -27,20 +29,23 @@ public class RotationController : MonoBehaviour
 
         Vector3 movMouse = new();
 
-        switch (modoRotacion)
-        {
-            case EjesRotacion.MouseX: //derecha izquierda
-                movMouse = new Vector3(0, incRotacionY, 0);
-                break;
-            case EjesRotacion.MouseY: //arriba abajo
-                movMouse = new Vector3(incRotacionX, 0, 0);
-                break;
-            case EjesRotacion.MouseXY:
-                movMouse = new Vector3(incRotacionX, incRotacionY, 0);
-                break;
+        if (Input.GetKey(KeyCode.Mouse2)){
+            lockMouse = !lockMouse;
         }
-
-        transform.localEulerAngles += movMouse;
-
+        if (!lockMouse){
+            switch (modoRotacion)
+                {
+                    case EjesRotacion.MouseX: //derecha izquierda
+                        movMouse = new Vector3(0, incRotacionY, 0);
+                        break;
+                    case EjesRotacion.MouseY: //arriba abajo
+                        movMouse = new Vector3(incRotacionX, 0, 0);
+                        break;
+                    case EjesRotacion.MouseXY:
+                        movMouse = new Vector3(incRotacionX, incRotacionY, 0);
+                        break;
+                }
+            transform.localEulerAngles += movMouse;
+        }
     }
 }
