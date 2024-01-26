@@ -18,11 +18,6 @@ public class RotadorCabeza : MonoBehaviour
             transform.LookAt(target.transform);
         } else{
             transform.localEulerAngles = new Vector3(direccionPersonaje.x,0,0);
-            /*
-            Quaternion startRotation = Quaternion.LookRotation(direccionFirstPerson);
-            Quaternion endRotation = Quaternion.LookRotation(direccionPersonaje);
-            Quaternion smoothAnimation = Quaternion.Slerp(startRotation,endRotation,0.5f);
-            transform.rotation = smoothAnimation;*/
         }
 
     }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EnemigoIA : MonoBehaviour
@@ -9,13 +8,14 @@ public class EnemigoIA : MonoBehaviour
         Andando = 1
     }
 
-    EstadoEnemigo estado = EstadoEnemigo.Parado;
+    EstadoEnemigo estado;
     private RotadorExtremidades[] rotadores;
     private CharacterController characterController;
-    public float speed = 5;
+    public float speed = 2;
 
     void Start()
     {
+        characterController = GetComponent<CharacterController>();
         rotadores = GetComponentsInChildren<RotadorExtremidades>();
         IniciarAnimacion();
     }
@@ -24,26 +24,16 @@ public class EnemigoIA : MonoBehaviour
     {
         switch (estado){
             case EstadoEnemigo.Andando:
-                transform.Translate(Vector3.forward*speed*Time.deltaTime);
+                Debug.Log("Se mueve");
+                characterController.Move(Vector3.forward*speed*Time.deltaTime);
+                IniciarAnimacion();
                 break;
             case EstadoEnemigo.Parado:
-                transform.Translate(Vector3.zero);
+                characterController.Move(Vector3.zero);
+                PararAnimacion();
                 break;
         }
     }
-
-    /*
-    private void Andando(){
-        characterController.Move(transform.TransformDirection(new Vector3(
-            0,
-            0,
-            1
-        ) * 1 * Time.deltaTime));
-    }
-
-    private void Parado(){
-        characterController.Move(Vector3.zero);
-    }*/
 
     private void IniciarAnimacion(){
         estado = EstadoEnemigo.Andando;

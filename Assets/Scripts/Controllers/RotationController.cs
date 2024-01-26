@@ -14,8 +14,8 @@ public class RotationController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Posicion inicial: " + transform.position);
-        Debug.Log("Posicion final: " + transform.rotation);
+        //Debug.Log("Posicion inicial: " + transform.position);
+        //Debug.Log("Posicion final: " + transform.rotation);
     }
 
     void Update()
