@@ -53,5 +53,4 @@ public class PositionController : MonoBehaviour
 
         isGrounded = characterController.isGrounded;
     }
-
 }

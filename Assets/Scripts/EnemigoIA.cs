@@ -22,6 +22,12 @@ public class EnemigoIA : MonoBehaviour
     public GameObject DEBUGCurrentHitObject; //para debugear
     public float DEBUGCurrentHitDistance; //para debugear
 
+    //---------------------------------
+    float vy = -10;
+    public float fallSpeedLimit = 20;
+    public float gravity = -10;
+    private bool isGrounded = false;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -31,6 +37,7 @@ public class EnemigoIA : MonoBehaviour
 
     void Update()
     {
+        Fall();
         origin = transform.position + Vector3.up;
         direction = transform.forward;
         Ray rayo = new Ray(origin,direction);
@@ -90,4 +97,23 @@ public class EnemigoIA : MonoBehaviour
             rotador.PararAnimacion();
         }
     }
+
+    private void Fall()
+    {
+        if (!isGrounded && vy > -fallSpeedLimit){
+            vy = vy + gravity*Time.deltaTime;
+            if (vy < -fallSpeedLimit){
+                vy = -fallSpeedLimit;
+            }
+        }
+
+        characterController.Move(new Vector3(
+            0,
+            vy,
+            0
+        ) * speed/2 * Time.deltaTime);
+
+        isGrounded = characterController.isGrounded;
+    }
+    
 }

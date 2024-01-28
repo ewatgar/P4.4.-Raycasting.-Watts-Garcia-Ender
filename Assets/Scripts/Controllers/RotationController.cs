@@ -29,10 +29,13 @@ public class RotationController : MonoBehaviour
 
         Vector3 movMouse = new();
 
-        if (Input.GetKey(KeyCode.Mouse2)){
+        if (Input.GetMouseButtonDown(2)){
             lockMouse = !lockMouse;
         }
+
         if (!lockMouse){
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             switch (modoRotacion)
                 {
                     case EjesRotacion.MouseX: //derecha izquierda
@@ -46,6 +49,9 @@ public class RotationController : MonoBehaviour
                         break;
                 }
             transform.localEulerAngles += movMouse;
+        } else{
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }

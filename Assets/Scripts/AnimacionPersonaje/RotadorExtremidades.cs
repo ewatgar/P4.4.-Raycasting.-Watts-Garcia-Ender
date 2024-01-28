@@ -21,9 +21,9 @@ public class RotadorExtremidades : MonoBehaviour
 
     void Update()
     {
-        string nameParent = transform.parent.parent.name;
-        switch (nameParent){
-            case "Steve":
+        string nameRoot = transform.root.name;
+        switch (nameRoot){
+            case "Player":
                 //Quiero que Steve ejecutela animación sólo cuando se mueve y no cuando rota también su cámara
                 isWalking = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
                 break;
